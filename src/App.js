@@ -13,7 +13,9 @@ class App extends Component {
   async componentDidMount() {
     // show loading while awaiting user data
     this.setState({ loading: true });
-    const res = await axios.get('https://api.github.com/users');
+    const res = await axios.get(
+      `https://api.github.com/users?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
+    );
     // Dont show loading once we have our user data
     this.setState({ users: res.data, loading: false });
   }
