@@ -57,8 +57,8 @@ class App extends Component {
                     <Users loading={loading} users={users} />
                   </Fragment>
                 }
-              ></Route>
-              <Route exact path='/about' element={<About />}></Route>
+              />
+              <Route exact path='/about' element={<About />} />
             </Routes>
           </div>
         </div>
