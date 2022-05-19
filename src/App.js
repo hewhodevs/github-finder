@@ -28,6 +28,8 @@ class App extends Component {
 
   setAlert = (msg, type) => {
     this.setState({ alert: { msg, type } });
+    // remove alert after 5 seconds, by resetting it's state back to null.
+    setTimeout(() => this.setState({ alert: null }), 5000);
   };
 
   render() {
