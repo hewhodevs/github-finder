@@ -12,13 +12,11 @@ class App extends Component {
   };
 
   searchUsers = async (text) => {
-    console.log(text);
     const res = await axios.get(
       `https://api.github.com/search/users?q=${text}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
     );
     // Dont show loading once we have our user data
     this.setState({ users: res.data.items, loading: false });
-    console.log(this.state.users);
   };
 
   render() {
