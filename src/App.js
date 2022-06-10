@@ -11,6 +11,7 @@ import './App.css';
 class App extends Component {
   state = {
     users: [],
+    user: {},
     loading: false,
     alert: null,
   };
@@ -18,10 +19,24 @@ class App extends Component {
   searchUsers = async (text) => {
     this.setState({ loading: true });
     const res = await axios.get(
-      `https://api.github.com/search/users?q=${text}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
+      `https://api.github.com/search/users?q=${text}&client_id=${
+        process.env.REACT_APP_GITHUB_CLIENT_ID
+      }&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
     );
     // Dont show loading once we have our user data
     this.setState({ users: res.data.items, loading: false });
+  };
+
+  // Get a single github user
+  getUser = async (username) => {
+    this.setState({ loading: true });
+    const res = await axios.get(
+      `https://api.github.com/search/users?q=${username}&client_id=${
+        process.env.REACT_APP_GITHUB_CLIENT_ID
+      }&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
+    );
+    // Dont show loading once we have our user data
+    this.setState({ user: res.data, loading: false });
   };
 
   clearUsers = () => {
